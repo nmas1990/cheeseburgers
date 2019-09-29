@@ -1,0 +1,62 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+
+int basal(int weight); //Basal metabolic rate
+int physical (int weight, int the_intensity, int the_minutes); //physical function
+int cheeseburgers ();
+
+
+int main()
+{
+  int pounds;
+  int intensity;
+  int minutes;
+  int eat;
+  cout<< "What is your weight in lbs? ";
+  cin>> pounds;
+  cout<< endl<< "Calories needed to maintain your weight based your basal metabolic rate: ";
+  cout<< endl<< basal(pounds)<<endl;
+  cout<< endl<<"Now let's add in the activities you use to burn calories including: "<<endl;
+  cout<<endl<<"For example: Running at 10mph (17), Running at 6mph (10), Basketball (8), Walking at 1mph (1)"<<endl;
+  cout<<"Enter the exercise intensity of (one) excercise: ";
+  cin>> intensity;
+  cout<<endl<<"And last, enter the minutes spent participating in this activity: ";
+  cin>> minutes;
+
+  cout<<endl<<endl<<"The calories required for this physical activity is ";
+  cout<<physical(pounds,intensity,minutes);
+  cout<<endl<<endl<<"Now that you know how many calories you burn, how many cheese burgers would you need to make up those calories? ";
+  eat = (basal(pounds)+physical(pounds,intensity,minutes))/cheeseburgers();
+  cout<<endl<< eat;
+
+  return 0;
+
+
+}
+
+
+int basal(int weight)
+{
+    double calories;
+    double exponent=.756;
+    double base;
+    base=(weight/2.2);
+    calories =pow(base,exponent);
+    calories =calories*70;
+    return calories;
+}
+int physical (int weight, int the_intensity, int the_minutes)
+{
+    int calories_required;
+    double x = 0.0385;
+    calories_required= x*the_intensity*weight*the_minutes;
+    return calories_required;
+}
+int cheeseburgers()
+{
+    int calories = 1000;
+    return calories;
+}
